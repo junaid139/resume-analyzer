@@ -4,3 +4,4 @@ python-docx
 nltk
 scikit-learn
 mysql-connector-python
+gunicorn
