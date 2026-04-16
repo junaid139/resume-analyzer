@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>📄 Resume Analyzer</h1>
+            <p style="text-align:center; color:#666; margin-bottom:20px;">
+                Upload multiple resumes and rank candidates automatically
+            </p>
+
+            <form action="/analyze" method="POST" enctype="multipart/form-data">
+                <label><b>Job Title</b></label>
+                <input type="text" name="job_title" placeholder="e.g. Python Developer" required>
+
+                <label><b>Job Description</b></label>
+                <textarea name="job_description" rows="6"
+                placeholder="Paste the full job description here..." required></textarea>
+
+                <label><b>Upload Resumes (PDF or DOCX) — Select Multiple!</b></label>
+                <input type="file" name="resumes" accept=".pdf,.docx" multiple required>
+                <p style="color:#888; font-size:13px; margin-top:-10px;">
+                    Hold Ctrl (Windows) to select multiple files
+                </p>
+
+                <button type="submit">🔍 Analyze Resumes</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
