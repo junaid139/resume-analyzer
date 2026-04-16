@@ -131,16 +131,15 @@ def extract_name_email(text):
     email = ""
     name = ""
 
-    # Extract email using regex
     email_match = re.findall(r'[\w\.-]+@[\w\.-]+\.\w+', text)
     if email_match:
         email = email_match[0]
 
-    # Extract name using spaCy NER
-    doc = nlp(text[:500])  # Only check first 500 chars for speed
-    for ent in doc.ents:
-        if ent.label_ == "PERSON":
-            name = ent.text
+    lines = text.strip().split('\n')
+    for line in lines[:5]:
+        line = line.strip()
+        if line and len(line.split()) <= 4 and line.replace(' ', '').isalpha():
+            name = line
             break
 
     return name, email
@@ -195,7 +194,6 @@ def get_skill_gap(resume_text, job_text):
 
 def get_improvements(score, matched, missing, has_education, exp_score):
     tips = []
-
     if missing:
         tips.append(f"Learn these missing skills: {', '.join(missing[:5])}")
     if not has_education:
@@ -208,5 +206,4 @@ def get_improvements(score, matched, missing, has_education, exp_score):
         tips.append("Good base! Focus on adding the missing skills to improve your score")
     else:
         tips.append("Strong match! Keep your resume updated with latest skills")
-
     return tips
