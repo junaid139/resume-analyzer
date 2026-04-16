@@ -1,6 +1,5 @@
 import nltk
 import re
-import spacy
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -9,8 +8,6 @@ nltk.download('punkt', quiet=True)
 nltk.download('punkt_tab', quiet=True)
 
 from nltk.corpus import stopwords
-
-nlp = spacy.load("en_core_web_sm")
 
 SKILLS_DB = [
     # Programming Languages
